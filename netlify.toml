@@ -1,0 +1,4 @@
+[build]
+  publish = "src"
+  command = "cp -r src/ dist/"
+  functions = "functions"

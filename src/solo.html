@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LWJ Pair Programming Scene</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <main class="overlay">
+      <div class="top-bar"></div>
+
+      <div class="content">
+        <div class="videos">
+          <div class="guest">
+            <h2><span>Sidhartha Chatterjee</span></h2>
+          </div>
+          <div class="host">
+            <video class="host"></video>
+            <h2><span>Jason Lengstorf</span></h2>
+          </div>
+        </div>
+        <div class="desktop"></div>
+      </div>
+
+      <div class="bottom-bar"></div>
+
+      <div class="lower-third">
+        <div class="logo">
+          <img src="images/learn-with-jason-dark.svg" alt="Learn With Jason" />
+        </div>
+        <div class="details">
+          <h1>Combine REST APIs in GraphQL Using 8base</h1>
+
+          <div class="rotator">
+            <div class="schedule">
+              <p>
+                see past and upcoming episodes at
+                <strong>learnwithjason.dev</strong>
+              </p>
+            </div>
+
+            <div class="captions">
+              <p>
+                visit <strong>lwj.dev/live</strong> to access live captions by
+                White Coat Captioning
+              </p>
+            </div>
+
+            <div class="sponsors">
+              <span>live captioning made possible by</span>
+              <img src="images/sponsors/netlify.svg" alt="Netlify" />
+              <img src="images/sponsors/fauna.png" alt="Fauna" />
+            </div>
+          </div>
+        </div>
+        <div class="chat">
+          <!-- for now the chat is an additional overlay placed in this spot -->
+        </div>
+      </div>
+    </main>
+
+    <script>
+      navigator.mediaDevices
+        .getUserMedia({
+          audio: false,
+          video: { width: 1280, height: 720 },
+        })
+        .then((stream) => {
+          const video = document.querySelector('video');
+          video.srcObject = stream;
+          video.onloadedmetadata = () => {
+            video.play();
+          };
+        });
+    </script>
+  </body>
+</html>
