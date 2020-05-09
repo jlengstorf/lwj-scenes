@@ -204,7 +204,7 @@ body {
   display: grid;
   height: 100%;
   left: 0;
-  opacity: 0%;
+  opacity: 0;
   width: 100%;
 }
 
@@ -218,23 +218,23 @@ body {
 
 @keyframes rotate {
   0% {
-    opacity: 0%;
+    opacity: 0;
   }
 
   3% {
-    opacity: 75%;
+    opacity: 0.75;
   }
 
   30% {
-    opacity: 75%;
+    opacity: 0.75;
   }
 
   33% {
-    opacity: 0%;
+    opacity: 0;
   }
 
   100% {
-    opacity: 0%;
+    opacity: 0;
   }
 }
 
