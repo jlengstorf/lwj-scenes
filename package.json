@@ -1,0 +1,15 @@
+{
+  "name": "lwj-scenes",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:jlengstorf/lwj-scenes.git",
+  "author": "Jason Lengstorf <jason@lengstorf.com> (https://lengstorf.com)",
+  "license": "MIT",
+  "dependencies": {
+    "@11ty/eleventy": "^0.10.0"
+  },
+  "scripts": {
+    "dev": "eleventy --serve",
+    "build": "eleventy"
+  }
+}

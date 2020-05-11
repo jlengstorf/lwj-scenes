@@ -3,7 +3,9 @@
   --yellow: #ffdf37;
   --blue: #a6fffa;
   --light-gray: #e0e0e0;
+  --dark-gray: #1a2a3b;
   --black: #011627;
+  --black-transparent: #01162700;
   --font-family: mallory, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol';
@@ -82,6 +84,8 @@ body {
 }
 
 .content {
+  background-position: center;
+  background-size: cover;
   display: grid;
   grid-template-columns: 280px 1fr;
 }
@@ -100,13 +104,8 @@ body {
   position: relative;
 }
 
-.host video {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.videos h2 {
+.host h2,
+.guest h2 {
   bottom: 0;
   color: var(--text);
   font-size: 22px;
@@ -118,7 +117,8 @@ body {
   width: 100%;
 }
 
-.videos span {
+.host span,
+.guest span {
   background: var(--black);
   display: inline-block;
   padding: 0 3px;
@@ -128,7 +128,8 @@ body {
   -webkit-text-stroke: 6px transparent;
 }
 
-.videos h2::after {
+.host h2::after,
+.guest h2::after {
   background: var(--black);
   bottom: 0;
   content: '';
@@ -139,13 +140,46 @@ body {
   z-index: 1;
 }
 
-.desktop {
-  background-image: linear-gradient(
-      90deg,
-      rgba(242, 242, 242, 0.9) 0%,
-      rgba(242, 242, 242, 0.9) 100%
-    ),
-    var(--lwj-gradient);
+.content.interview {
+  background-image: url(/images/interview-overlay.webp);
+  grid-template-columns: 1fr 528px 90px 528px 1fr;
+  grid-template-rows: 65px 528px 1fr;
+}
+
+.content.monologue {
+  background-image: url(/images/monologue-overlay.webp);
+  grid-template-columns: 1fr 684px 1fr;
+  grid-template-rows: 65px 528px 1fr;
+}
+
+.interview .host,
+.monologue .host {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  height: 100%;
+  width: 100%;
+}
+
+.interview .guest,
+.monologue .guest {
+  grid-column: 4 / 5;
+  grid-row: 2 / 3;
+  height: 100%;
+  width: 100%;
+}
+
+.interview .host h2,
+.interview .guest h2,
+.monologue .host h2,
+.monologue .guest h2 {
+  font-size: 36px;
+}
+
+.interview .host h2::after,
+.interview .guest h2::after,
+.monologue .host h2::after,
+.monologue .guest h2::after {
+  background: transparent;
 }
 
 .lower-third {
@@ -157,13 +191,51 @@ body {
 }
 
 .logo {
+  height: 140px;
+  position: relative;
   width: 280px;
+}
+
+.logo::after {
+  background-image: linear-gradient(
+      255deg,
+      var(--black) 0%,
+      var(--black-transparent) 70%
+    ),
+    radial-gradient(
+      ellipse 90% 100% at 15% 20%,
+      var(--black),
+      var(--black-transparent) 25%
+    ),
+    radial-gradient(
+      ellipse 50% 250% at 5% 80%,
+      var(--black),
+      var(--black-transparent) 25%
+    );
+  bottom: 0;
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
 }
 
 .logo img {
   display: block;
   margin: 0 auto;
+  position: relative;
   width: 108px;
+  z-index: 100;
+}
+
+#canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 140px;
 }
 
 .details {

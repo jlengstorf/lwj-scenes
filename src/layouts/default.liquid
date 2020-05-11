@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LWJ Pair Programming Scene</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <main class="overlay">
+      <div class="top-bar"></div>
+
+      {{ content }}
+
+      <div class="bottom-bar"></div>
+
+      {% include lower-third %}
+    </main>
+
+    <script type="module">
+      import { loadNextEpisode } from '/js/twitch.js';
+      // import { connect } from '/js/streamblitz.js';
+      import { startAnimation } from '/js/animations.js';
+
+      loadNextEpisode();
+      // connect('jlengstorf');
+      startAnimation();
+    </script>
+  </body>
+</html>
