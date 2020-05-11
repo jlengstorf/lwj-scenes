@@ -153,6 +153,7 @@ body {
 }
 
 .interview .host,
+.interview .guest,
 .monologue .host {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
@@ -160,25 +161,17 @@ body {
   width: 100%;
 }
 
-.interview .guest,
-.monologue .guest {
+.interview .host {
   grid-column: 4 / 5;
-  grid-row: 2 / 3;
-  height: 100%;
-  width: 100%;
 }
 
-.interview .host h2,
-.interview .guest h2,
-.monologue .host h2,
-.monologue .guest h2 {
+.interview h2,
+.monologue h2 {
   font-size: 36px;
 }
 
-.interview .host h2::after,
-.interview .guest h2::after,
-.monologue .host h2::after,
-.monologue .guest h2::after {
+.interview h2::after,
+.monologue h2::after {
   background: transparent;
 }
 
