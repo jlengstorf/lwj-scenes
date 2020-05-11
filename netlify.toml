@@ -1,4 +1,4 @@
 [build]
-  publish = "src"
+  publish = "dist"
   command = "cp -r src/ dist/"
   functions = "functions"
