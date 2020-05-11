@@ -1,4 +1,4 @@
 [build]
   publish = "dist"
-  command = "cp -r src/ dist/"
+  command = "npm run build"
   functions = "functions"
