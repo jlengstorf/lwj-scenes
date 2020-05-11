@@ -142,14 +142,14 @@ body {
 
 .content.interview {
   background-image: url(/images/interview-overlay.webp);
-  grid-template-columns: 1fr 528px 90px 528px 1fr;
-  grid-template-rows: 65px 528px 1fr;
+  grid-template-columns: 1fr 480px 80px 480px 1fr;
+  grid-template-rows: 56px 462px 1fr;
 }
 
 .content.monologue {
   background-image: url(/images/monologue-overlay.webp);
-  grid-template-columns: 1fr 684px 1fr;
-  grid-template-rows: 65px 528px 1fr;
+  grid-template-columns: 1fr 600px 1fr;
+  grid-template-rows: 56px 462px 1fr;
 }
 
 .interview .host,
