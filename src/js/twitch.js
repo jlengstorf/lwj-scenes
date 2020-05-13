@@ -1,7 +1,7 @@
 export async function loadNextEpisode() {
   // if an episode is in progress, we still want to show it.
-  const nowMinus90Minutes = new Date().getTime() - 90 * 60 * 1000;
-  const date = new Date(nowMinus90Minutes).toISOString();
+  const nowMinus3Hours = new Date().getTime() - 180 * 60 * 1000;
+  const date = new Date(nowMinus3Hours).toISOString();
   const episode = await fetch(
     'https://vnkupgyb.apicdn.sanity.io/v1/graphql/production/default',
     {
