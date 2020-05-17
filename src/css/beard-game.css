@@ -31,7 +31,7 @@
   position: relative;
   transform: rotate(15deg) translateY(500px);
   transform-origin: bottom left;
-  transition: all 500ms ease-out;
+  transition: all 300ms cubic-bezier(0.8, -0.25, 0.2, 1.25);
   opacity: 0;
 }
 
@@ -46,7 +46,7 @@
   height: 180px;
   background: var(--flesh);
   margin-bottom: 10px;
-  margin-left: 15px;
+  margin-left: 25px;
   border-radius: 30px;
   border-top-left-radius: 60px;
   border-top-right-radius: 60px;
@@ -152,39 +152,13 @@
   border-radius: 10px;
   z-index: 1000;
 }
-.jason .hair {
-  position: absolute;
-  left: 0;
-  bottom: 125px;
-  width: 100%;
-  height: 55px;
-  background: var(--hair);
-  border-top-left-radius: 150px 120px;
-  border-top-right-radius: 100px 60px;
-  border-bottom-right-radius: 160px 60px;
-  transition: height 1s, opacity 1s;
-}
-.jason .hair.none {
-  opacity: 0;
-}
 .jason .beard {
   position: absolute;
   right: 0;
   top: 100px;
   width: 110px;
   height: 80px;
-  background: var(--hair);
-  border-radius: 20px;
-  border-top-left-radius: 60px;
-  border-bottom-right-radius: 30px;
-  z-index: 100;
-  transition: height 1s, opacity 1s;
-}
-.jason .beard.none {
-  opacity: 0.1;
-}
-.jason .beard.rainbow {
-  background: linear-gradient(
+  background-image: linear-gradient(
     to top,
     violet,
     indigo,
@@ -193,16 +167,28 @@
     yellow,
     orange,
     red,
-    violet
+    violet,
+    var(--hair) 50%,
+    var(--hair) 100%
   );
-  background-repeat: repeat-y;
-  background-size: 110px 100%;
-  // animation: rainbowbeard 5s infinite;
+  background-size: 100% 220%;
+  background-position: top center;
+  border-radius: 20px;
+  border-top-left-radius: 60px;
+  border-bottom-right-radius: 30px;
+  z-index: 100;
+  transition: all 1s;
+}
+.jason .beard.none {
+  opacity: 0.1;
+}
+.jason .beard.rainbow {
+  background-position: bottom center;
 }
 .jason .body {
   position: relative;
   width: 200px;
-  height: 360px;
+  height: 300px;
   background: var(--purple);
   border-top-right-radius: 90px;
   border-top-left-radius: 30px;
@@ -246,12 +232,57 @@
   }
 }
 
-@keyframes rainbowbeard {
-  0% {
-    background-position: 0 0;
+.notification {
+  animation: float 2s linear;
+  animation-delay: 300ms;
+  bottom: 100%;
+  color: #fff;
+  font-family: mallory;
+  font-weight: 800;
+  font-size: 60px;
+  left: -70px;
+  letter-spacing: -0.05em;
+  right: 0;
+  opacity: 0;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  transform: scale(1) rotate(var(--angle-end)) translate3d(0, -100px, 0);
+  transform-origin: bottom center;
+  width: 300px;
+  z-index: 9000;
+  -webkit-text-stroke: 2px black;
+}
+
+.char {
+  --char-center: calc((var(--char-total) - 1) / 2);
+  --char-offset: calc(var(--char-index) - var(--char-center));
+  --distance-sine: calc(var(--char-offset) / var(--char-center));
+
+  animation: fly-in 0.5s cubic-bezier(0.74, 0.73, 0.27, 1.67) both;
+  animation-delay: calc(0.04s * var(--char-index) + 300ms);
+}
+
+@keyframes float {
+  from {
+    opacity: 0;
+    transform: scale(0.65) rotate(var(--angle-start)) translate3d(0, 20px, 0);
   }
 
-  100% {
-    background-position: 0 100%;
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 1;
+  }
+}
+
+@keyframes fly-in {
+  from {
+    opacity: 0;
+    transform: scale(0) translateY(150%)
+      translateX(calc(var(--distance-sine) * -400%))
+      rotate(calc(var(--distance-sine) * -0.75turn));
   }
 }

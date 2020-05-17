@@ -1,21 +1,17 @@
 import React, { forwardRef, useRef, useCallback } from 'react';
 import { useSoundEffect } from '../hooks/use-sound-effect';
 
-const Effect = forwardRef(({ command, state }, ref) => {
+const Effect = forwardRef(({ state }, ref) => {
+  const { image, username, command } = state.context;
+
   return (
     <div ref={ref} className={`command-display`}>
-      {state !== 'idle' && (
+      {state.value !== 'idle' && (
         <>
-          {command.handler?.image && (
-            <img
-              className="command-image"
-              src={command.handler?.image}
-              alt=""
-            />
-          )}
+          {image && <img className="command-image" src={image} alt="" />}
           <svg viewBox="0 0 450 45" className="command-text">
             <text y="30" x="225">
-              {command.author?.username} redeemed {command.command}
+              {username} redeemed {command}
             </text>
           </svg>
         </>
@@ -53,16 +49,14 @@ const Effects = () => {
     [ref],
   );
 
-  const [command, state] = useSoundEffect({
+  const state = useSoundEffect({
     services: {
       startEffectAnimation,
       endEffectAnimation,
     },
   });
 
-  console.log({ command, state });
-
-  return <Effect ref={ref} command={command} state={state} />;
+  return <Effect ref={ref} state={state} />;
 };
 
 export default Effects;

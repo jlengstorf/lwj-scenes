@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
-import { gql, useApolloClient } from '@apollo/client';
+import { useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 import { Machine, assign } from 'xstate';
 import { useCommand } from './use-command';
 
 const effectsMachine = Machine({
-  id: 'fetch',
+  id: 'effects',
   initial: 'idle',
   context: {
     transitionSpeed: 600,
@@ -15,10 +14,12 @@ const effectsMachine = Machine({
     idle: {
       on: {
         COMMAND_RECEIVED: {
-          actions: assign((context, event) => ({
-            audio: event.command.handler?.audio,
-            duration:
-              event.command.handler?.duration * 1000 || context.duration,
+          actions: assign((context, { command }) => ({
+            command: command.command,
+            username: command.author?.username,
+            image: command.handler?.image,
+            audio: command.handler?.audio,
+            duration: command.handler?.duration * 1000 || context.duration,
           })),
           target: 'loading',
         },
@@ -78,7 +79,6 @@ const effectsMachine = Machine({
       invoke: {
         src: (context, event) =>
           new Promise((resolve) => {
-            console.log({ context, event });
             setTimeout(() => {
               resolve();
             }, context.duration);
@@ -106,10 +106,14 @@ export function useSoundEffect(config) {
   const [state, send] = useMachine(effectsMachine, config);
 
   useEffect(() => {
-    if (!command.handler?.audio && !command.handler?.image) return;
+    if (
+      state.value !== 'idle' ||
+      (!command.handler?.audio && !command.handler?.image)
+    )
+      return;
 
     send({ type: 'COMMAND_RECEIVED', command });
   }, [command]);
 
-  return [command, state.value];
+  return state;
 }

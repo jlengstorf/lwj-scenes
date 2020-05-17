@@ -27,10 +27,7 @@ export function useCommand() {
                   large
                 }
               }
-
-              ... on TwitchChatMessage {
-                html
-              }
+              time
 
               ... on TwitchChatCommand {
                 command
@@ -50,6 +47,8 @@ export function useCommand() {
       })
       .subscribe({
         next: ({ data }) => {
+          if (data.message.__typename !== 'TwitchChatCommand') return;
+
           setCommand(data.message);
         },
       });
