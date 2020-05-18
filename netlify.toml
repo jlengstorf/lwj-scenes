@@ -2,3 +2,7 @@
   publish = "dist"
   command = "npm run build"
   functions = "functions"
+
+[dev]
+  command = "npm run dev"
+  

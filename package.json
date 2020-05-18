@@ -6,10 +6,34 @@
   "author": "Jason Lengstorf <jason@lengstorf.com> (https://lengstorf.com)",
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "^0.10.0"
+    "@11ty/eleventy": "^0.10.0",
+    "@apollo/client": "^3.0.0-beta.48",
+    "@apollo/link-ws": "^2.0.0-beta.3",
+    "@xstate/react": "^0.8.1",
+    "graphql": "^15.0.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "splitting": "^1.0.6",
+    "subscriptions-transport-ws": "^0.9.16",
+    "xstate": "^4.9.1"
   },
   "scripts": {
-    "dev": "eleventy --serve",
+    "dev": "run-p dev:*",
+    "dev:react": "webpack --watch --mode development",
+    "dev:11ty": "eleventy --serve",
+    "build:react": "webpack --mode production",
+    "prebuild": "npm run build:react",
     "build": "eleventy"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.5.3",
+    "npm-run-all": "^4.1.5",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }

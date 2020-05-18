@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LWJ Pair Programming Scene</title>
     <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/beard-game.css" />
   </head>
   <body>
     <main class="overlay">
@@ -17,6 +18,9 @@
       {% include lower-third %}
     </main>
 
+    <div class="beard-game {% if leftVideo == true %}left{% endif %}"></div>
+    <div class="effects"></div>
+
     <script type="module">
       import { loadNextEpisode } from '/js/twitch.js';
       import { startAnimation } from '/js/animations.js';
@@ -24,5 +28,6 @@
       loadNextEpisode();
       startAnimation();
     </script>
+    <script src="/js/app.js"></script>
   </body>
 </html>

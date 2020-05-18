@@ -11,16 +11,16 @@ export async function loadNextEpisode() {
       },
       body: JSON.stringify({
         query: `
-                query ($date: DateTime!) {
-                  allEpisodes(where: { date_gte: $date }) {
-                    title
-                    date
-                    guest {
-                      name
-                    }
-                  }
-                }
-              `,
+          query ($date: DateTime!) {
+            allEpisodes(where: { date_gte: $date }) {
+              title
+              date
+              guest {
+                name
+              }
+            }
+          }
+        `,
         variables: {
           date,
         },
@@ -36,5 +36,9 @@ export async function loadNextEpisode() {
     .catch((err) => console.error(err));
 
   document.querySelector('#episode-title').innerText = episode.title;
-  document.querySelector('#episode-guest').innerText = episode.guest[0].name;
+
+  const guest = document.querySelector('#episode-guest');
+  if (guest) {
+    guest.innerText = episode.guest[0].name;
+  }
 }
