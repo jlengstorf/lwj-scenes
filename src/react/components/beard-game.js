@@ -12,7 +12,7 @@ const Notifications = ({ command, time }) => {
   const ref = useRef();
 
   useEffect(() => {
-    if (!command || !['beard', 'shave', 'flap'].includes(command)) return;
+    if (!command || !['grow', 'shave', 'flap'].includes(command)) return;
 
     const rotation = Math.random() * 0.2 - 0.1;
     const drift = rotation > 0 ? rotation + 0.05 : rotation - 0.05;
@@ -51,7 +51,7 @@ const BeardGame = () => {
   }, []);
 
   useEffect(() => {
-    if (!['beard', 'shave', 'flap'].includes(command)) {
+    if (!['grow', 'shave', 'flap'].includes(command)) {
       return;
     }
 
@@ -77,7 +77,7 @@ const BeardGame = () => {
       return;
     }
 
-    if (command === 'beard') {
+    if (command === 'grow') {
       beard.classList.remove('none');
 
       if (current + INCREMENT >= BEARD_LENGTH_DEFAULT * 2) {
