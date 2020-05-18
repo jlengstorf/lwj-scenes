@@ -11,6 +11,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/link-ws';
 
 import BeardGame from './components/beard-game';
+import Chat from './components/chat';
 import Effects from './components/effects';
 
 const wsLink = new WebSocketLink({
@@ -58,4 +59,13 @@ ReactDOM.render(
     </ApolloProvider>
   </React.StrictMode>,
   document.querySelector('.beard-game'),
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <Chat />
+    </ApolloProvider>
+  </React.StrictMode>,
+  document.querySelector('.chat'),
 );

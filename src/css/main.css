@@ -1,5 +1,6 @@
 :root {
   --pink: #d459ab;
+  --pink-text: #dd78bc; /* lightened up to meet a11y guidelines */
   --yellow: #ffdf37;
   --blue: #a6fffa;
   --light-gray: #e0e0e0;
@@ -377,4 +378,36 @@ body {
   stroke-width: 6px;
   stroke-linejoin: round;
   text-anchor: middle;
+}
+
+.chat {
+  border: 10px solid var(--black);
+  border-left: 0;
+  border-right: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.chat ul {
+  bottom: 0;
+  font-size: 0.875rem;
+  list-style: none;
+  margin: 0;
+  overflow-y: hidden;
+  padding: 0;
+  position: absolute;
+}
+
+.chat li {
+  display: block;
+  line-height: 20px;
+  margin: 0.25rem;
+  min-height: 20px;
+}
+
+.chat img {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  width: 20px;
 }
