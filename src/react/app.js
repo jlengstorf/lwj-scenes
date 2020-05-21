@@ -15,6 +15,7 @@ import Chat from './components/chat';
 import Effects from './components/effects';
 
 const wsLink = new WebSocketLink({
+  // uri: `ws://localhost:9999/graphql`,
   uri: `wss://api.streamblitz.com/graphql`,
   options: {
     reconnect: true,
@@ -22,6 +23,7 @@ const wsLink = new WebSocketLink({
 });
 
 const httpLink = new HttpLink({
+  // uri: `http://localhost:9999/graphql`,
   uri: `https://api.streamblitz.com/graphql`,
 });
 

@@ -309,7 +309,7 @@ body {
 
 .sponsors {
   gap: 30px;
-  grid-template-columns: 120px repeat(2, 80px);
+  grid-template-columns: 120px 320px;
 }
 
 .sponsors span {

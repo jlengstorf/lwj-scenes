@@ -1,12 +1,10 @@
-:root {
+.beard-game {
   --black: #1d2528;
   --light-purple: #7d96d1;
   --purple: #3d4284;
   --flesh: #ffb482;
   --hair: #875443;
-}
 
-.beard-game {
   position: absolute;
   left: 0;
   bottom: 150px;
