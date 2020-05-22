@@ -38,7 +38,7 @@ export function useChat() {
       })
       .subscribe({
         next: ({ data }) => {
-          if (data.message.__typename !== 'TwitchChatMessage') return;
+          if (!data || data.message.__typename !== 'TwitchChatMessage') return;
 
           setChat(data.message);
         },

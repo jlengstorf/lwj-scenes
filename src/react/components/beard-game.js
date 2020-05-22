@@ -17,8 +17,6 @@ const Notifications = ({ command, time }) => {
     const rotation = Math.random() * 0.2 - 0.1;
     const drift = rotation > 0 ? rotation + 0.05 : rotation - 0.05;
 
-    console.log({ rotation, drift });
-
     const word = document.createElement('div');
     word.classList.add('notification');
     word.style.setProperty('--angle-start', `${rotation}turn`);

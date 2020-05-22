@@ -47,7 +47,12 @@ export function useCommand() {
       })
       .subscribe({
         next: ({ data }) => {
-          if (data.message.__typename !== 'TwitchChatCommand') return;
+          if (
+            !data ||
+            data?.message?.__typename !== 'TwitchChatCommand' ||
+            !data?.message?.handler
+          )
+            return;
 
           setCommand(data.message);
         },
