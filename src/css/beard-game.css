@@ -8,7 +8,7 @@
   position: absolute;
   left: 0;
   bottom: 150px;
-  transform: scale(0.25);
+  transform: scale(0.35);
   transform-origin: bottom left;
   width: 500px;
   z-index: 10;
@@ -249,7 +249,7 @@
   transform-origin: bottom center;
   width: 300px;
   z-index: 9000;
-  -webkit-text-stroke: 2px black;
+  -webkit-text-stroke: 4px black;
 }
 
 .char {
