@@ -6,20 +6,21 @@
   "author": "Jason Lengstorf <jason@lengstorf.com> (https://lengstorf.com)",
   "license": "MIT",
   "dependencies": {
-    "@11ty/eleventy": "^0.10.0",
-    "@apollo/client": "^3.0.0-beta.48",
+    "@11ty/eleventy": "^0.11.0",
+    "@apollo/client": "^3.0.0-beta.50",
     "@apollo/link-ws": "^2.0.0-beta.3",
     "@xstate/react": "^0.8.1",
     "graphql": "^15.0.0",
+    "matter-js": "^0.14.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "splitting": "^1.0.6",
     "subscriptions-transport-ws": "^0.9.16",
-    "xstate": "^4.9.1"
+    "xstate": "^4.10.0"
   },
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:react": "webpack --watch --mode development",
+    "dev:react": "webpack --watch --mode development --devtool inline-source-map",
     "dev:11ty": "eleventy --serve",
     "build:react": "webpack --mode production",
     "prebuild": "npm run build:react",

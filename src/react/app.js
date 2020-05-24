@@ -11,6 +11,7 @@ import { getMainDefinition } from '@apollo/client/utilities';
 import { WebSocketLink } from '@apollo/link-ws';
 
 import BeardGame from './components/beard-game';
+import BoopDrop from './components/boop-drop';
 import Chat from './components/chat';
 import Effects from './components/effects';
 
@@ -61,6 +62,15 @@ ReactDOM.render(
     </ApolloProvider>
   </React.StrictMode>,
   document.querySelector('.beard-game'),
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <BoopDrop />
+    </ApolloProvider>
+  </React.StrictMode>,
+  document.querySelector('.boop-drop'),
 );
 
 ReactDOM.render(

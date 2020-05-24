@@ -334,14 +334,13 @@ body {
   position: absolute;
   right: 0;
   width: 415px;
+  z-index: 50;
 }
 
 .command-display {
   position: absolute;
   bottom: 0;
   right: 0;
-  /* background: hsla(270, 50%, 30%, 95%);
-  border: 1px solid hsl(270, 50%, 20%); */
   border-bottom-width: 0;
   border-right-width: 0;
   border-radius: 10px 0 0 0;
@@ -410,4 +409,17 @@ body {
   line-height: 1;
   vertical-align: middle;
   width: 20px;
+}
+
+.boop-drop {
+  bottom: 150px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 10px;
+  z-index: 15;
+}
+
+.boop-drop.left {
+  left: 280px;
 }
