@@ -77,7 +77,7 @@ const effectsMachine = Machine({
         sfx.play();
       },
       invoke: {
-        src: (context, event) =>
+        src: (context) =>
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();

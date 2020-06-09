@@ -1,19 +1,26 @@
-import React, { forwardRef, useRef, useCallback } from 'react';
+import React, { forwardRef, useRef, useCallback, useEffect } from 'react';
+import splitting from 'splitting';
 import { useSoundEffect } from '../hooks/use-sound-effect';
+
+import '../styles/effects.css';
 
 const Effect = forwardRef(({ state }, ref) => {
   const { image, username, command } = state.context;
+
+  useEffect(() => {
+    splitting({ by: 'chars' });
+  }, [username, command, state]);
 
   return (
     <div ref={ref} className={`command-display`}>
       {state.value !== 'idle' && (
         <>
           {image && <img className="command-image" src={image} alt="" />}
-          <svg viewBox="0 0 450 45" className="command-text">
-            <text y="30" x="225">
-              {username} redeemed {command}
-            </text>
-          </svg>
+          <div className="command-text" data-splitting>
+            <span className="username">{username}</span>
+            redeemed
+            <span className="effect">{command}</span>
+          </div>
         </>
       )}
     </div>
