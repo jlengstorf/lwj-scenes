@@ -1,0 +1,48 @@
+.corgi-stampede {
+  bottom: 2px;
+  left: 0;
+  height: 190px;
+  overflow: hidden;
+  position: absolute;
+  top: auto;
+  width: 100%;
+}
+
+.corgi {
+  --scale: 1;
+  animation: corgi-run 4s linear;
+  animation-delay: 1s;
+  position: absolute;
+  transform: translate3d(105vw, 0, 0) scale(var(--scale));
+}
+
+.corgi-stampede img {
+  animation: corgi-jump 400ms ease-in-out;
+  animation-delay: 500ms;
+  position: relative;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes corgi-run {
+  from {
+    transform: translate3d(105vw, 0, 0) scale(var(--scale));
+  }
+
+  to {
+    transform: translate3d(-5vw, 0, 0) scale(var(--scale));
+  }
+}
+
+@keyframes corgi-jump {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -25px, 0);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

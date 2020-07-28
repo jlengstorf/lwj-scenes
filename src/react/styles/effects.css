@@ -29,6 +29,7 @@
     Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 20px;
   font-weight: 800;
+  line-height: 1;
   text-align: center;
   text-transform: lowercase;
 }
@@ -49,8 +50,9 @@
 
   animation: fly-in 0.5s cubic-bezier(0.74, 0.73, 0, 1.5) both;
   animation-delay: calc(0.02s * var(--char-index));
-  background: var(--pink);
+  background: var(--black);
   display: block;
+  line-height: 1;
   margin: 0 -0.15em;
   padding: 0.2em;
   text-shadow: 0.01em 0.01em var(--black), -0.01em 0.01em var(--black),

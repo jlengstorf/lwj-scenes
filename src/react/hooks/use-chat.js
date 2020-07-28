@@ -10,7 +10,7 @@ export function useChat() {
       .subscribe({
         query: gql`
           subscription TwitchMessage {
-            message {
+            message(channel: "jlengstorf") {
               __typename
               message
               author {
@@ -38,7 +38,9 @@ export function useChat() {
       })
       .subscribe({
         next: ({ data }) => {
-          if (!data || data.message.__typename !== 'TwitchChatMessage') return;
+          if (!data || data.message.__typename !== 'TwitchChatMessage') {
+            return;
+          }
 
           setChat(data.message);
         },

@@ -14,18 +14,20 @@ import BeardGame from './components/beard-game';
 import BoopDrop from './components/boop-drop';
 import Chat from './components/chat';
 import Effects from './components/effects';
+import EmoteCounter from './components/emote-counter';
+import { CorgiStampede } from './components/corgi-stampede';
 
 const wsLink = new WebSocketLink({
-  // uri: `ws://localhost:9999/graphql`,
-  uri: `wss://api.streamblitz.com/graphql`,
+  uri: `ws://localhost:9999/graphql`,
+  // uri: `wss://api.streamblitz.com/graphql`,
   options: {
     reconnect: true,
   },
 });
 
 const httpLink = new HttpLink({
-  // uri: `http://localhost:9999/graphql`,
-  uri: `https://api.streamblitz.com/graphql`,
+  uri: `http://localhost:9999/graphql`,
+  // uri: `https://api.streamblitz.com/graphql`,
 });
 
 const link = split(
@@ -80,4 +82,13 @@ ReactDOM.render(
     </ApolloProvider>
   </React.StrictMode>,
   document.querySelector('.chat'),
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <EmoteCounter />
+    </ApolloProvider>
+  </React.StrictMode>,
+  document.querySelector('.emote-count'),
 );

@@ -375,6 +375,11 @@ body {
   z-index: 15;
 }
 
-.full-screen.left {
-  left: 280px;
+.full-screen.right {
+  right: 280px;
+}
+
+.desktop {
+  background: url(/images/debug-bg.png);
+  background-size: cover;
 }

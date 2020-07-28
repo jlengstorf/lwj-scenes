@@ -1,6 +1,7 @@
 import { Engine, Render, Runner, World, Bodies } from 'matter-js';
 import { useEffect, useRef } from 'react';
 import { useChat } from './use-chat';
+import { useCommand } from './use-command';
 
 const engine = Engine.create();
 const runner = Runner.create();
@@ -30,6 +31,11 @@ function createBoop(url) {
 export function useBoop() {
   const ref = useRef();
   const message = useChat();
+  const command = useCommand();
+
+  useEffect(() => {
+    console.log({ source: 'use-boop.js', command });
+  }, [command]);
 
   useEffect(() => {
     const canvas = ref.current;

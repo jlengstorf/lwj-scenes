@@ -10,7 +10,7 @@ export function useCommand() {
       .subscribe({
         query: gql`
           subscription TwitchMessage {
-            message {
+            message(channel: "jlengstorf") {
               __typename
               message
               author {
@@ -31,7 +31,7 @@ export function useCommand() {
 
               ... on TwitchChatCommand {
                 command
-                arguments
+                args
                 handler {
                   name
                   message
@@ -47,12 +47,14 @@ export function useCommand() {
       })
       .subscribe({
         next: ({ data }) => {
+          console.log({ source: 'use-command.js', data });
           if (
             !data ||
             data?.message?.__typename !== 'TwitchChatCommand' ||
             !data?.message?.handler
-          )
+          ) {
             return;
+          }
 
           setCommand(data.message);
         },
