@@ -18,16 +18,16 @@ import EmoteCounter from './components/emote-counter';
 import { CorgiStampede } from './components/corgi-stampede';
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:9999/graphql`,
-  // uri: `wss://api.streamblitz.com/graphql`,
+  // uri: `ws://localhost:9999/graphql`,
+  uri: `wss://api.streamblitz.com/graphql`,
   options: {
     reconnect: true,
   },
 });
 
 const httpLink = new HttpLink({
-  uri: `http://localhost:9999/graphql`,
-  // uri: `https://api.streamblitz.com/graphql`,
+  // uri: `http://localhost:9999/graphql`,
+  uri: `https://api.streamblitz.com/graphql`,
 });
 
 const link = split(
