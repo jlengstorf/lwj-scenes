@@ -380,6 +380,6 @@ body {
 }
 
 .desktop {
-  background: url(/images/debug-bg.png);
-  background-size: cover;
+  /* background: url(/images/debug-bg.png);
+  background-size: cover; */
 }
