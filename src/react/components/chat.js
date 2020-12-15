@@ -3,7 +3,6 @@ import { useMachine } from '@xstate/react';
 import { Machine, assign } from 'xstate';
 import rehype from 'rehype';
 import sanitize from 'rehype-sanitize';
-import striptags from 'striptags';
 import { useChat } from '../hooks/use-chat';
 
 const chatMachine = Machine({
