@@ -62,6 +62,41 @@ const Chat = () => {
         }
 
         const text = striptags(msg.html, '<img>');
+        const matches = Array.from(text.matchAll(/<.+?>/g));
+        const chatNode = document.createElement('div');
+        const start = document.createTextNode(
+          matches.length ? text.slice(0, matches[0].index) : '',
+        );
+        const lastIndex = 0;
+
+        chatNode.appendChild(start);
+
+        matches.forEach((match, matchIndex) => {
+          lastIndex = match.index + match[0].length;
+
+          const img = text.slice(match.index, lastIndex);
+          const src = img.match(/src="(.+?)"/)[1];
+
+          console.log(src);
+
+          if (src.startsWith('https://static-cdn.jtvnw.net/')) {
+            const cleanImg = document.createElement('img');
+            cleanImg.src = src;
+            cleanImg.alt = '';
+
+            chatNode.appendChild(cleanImg);
+          }
+
+          if (matches[matchIndex + 1]) {
+            const middle = document.createTextNode(
+              text.slice(lastIndex, matches[matchIndex + 1].index),
+            );
+            chatNode.appendChild(middle);
+          }
+        });
+
+        const last = document.createTextNode(text.slice(lastIndex));
+        chatNode.appendChild(last);
 
         return (
           <li key={`${msg.author.username}:${msg.time}`}>
@@ -76,7 +111,7 @@ const Chat = () => {
             >
               {msg.author.username}:
             </strong>
-            <span dangerouslySetInnerHTML={{ __html: text }} />
+            <span dangerouslySetInnerHTML={{ __html: chatNode.innerHTML }} />
           </li>
         );
       })}
