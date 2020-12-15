@@ -74,12 +74,13 @@ const Chat = () => {
         matches.forEach((match, matchIndex) => {
           lastIndex = match.index + match[0].length;
 
+          // pull out the image src just in case there are shenanigans
           const img = text.slice(match.index, lastIndex);
           const src = img.match(/src="(.+?)"/)[1];
 
-          console.log(src);
-
+          // only allow Twitch emotes in images
           if (src.startsWith('https://static-cdn.jtvnw.net/')) {
+            // build a fresh image to dump attributes that we don’t want
             const cleanImg = document.createElement('img');
             cleanImg.src = src;
             cleanImg.alt = '';
