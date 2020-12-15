@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 import { Machine, assign } from 'xstate';
+import striptags from 'striptags';
 import { useChat } from '../hooks/use-chat';
 
 const chatMachine = Machine({
@@ -60,6 +61,8 @@ const Chat = () => {
           color = 'var(--blue)';
         }
 
+        const text = striptags(msg.html, '<img>');
+
         return (
           <li key={`${msg.author.username}:${msg.time}`}>
             <strong
@@ -73,7 +76,7 @@ const Chat = () => {
             >
               {msg.author.username}:
             </strong>
-            <span dangerouslySetInnerHTML={{ __html: msg.html }} />
+            <span dangerouslySetInnerHTML={{ __html: text }} />
           </li>
         );
       })}
