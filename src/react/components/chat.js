@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useMachine } from '@xstate/react';
 import { Machine, assign } from 'xstate';
+import rehype from 'rehype';
+import sanitize from 'rehype-sanitize';
 import striptags from 'striptags';
 import { useChat } from '../hooks/use-chat';
 
@@ -61,43 +63,16 @@ const Chat = () => {
           color = 'var(--blue)';
         }
 
-        const text = striptags(msg.html, '<img>');
-        const matches = Array.from(text.matchAll(/<.+?>/g));
-        const chatNode = document.createElement('div');
-        const start = document.createTextNode(
-          matches.length ? text.slice(0, matches[0].index) : '',
-        );
-        const lastIndex = 0;
+        // listen to Chris
+        const text = rehype()
+          .data('settings', { fragment: true })
+          .use(sanitize)
+          .processSync(msg.html)
+          .toString();
 
-        chatNode.appendChild(start);
-
-        matches.forEach((match, matchIndex) => {
-          lastIndex = match.index + match[0].length;
-
-          // pull out the image src just in case there are shenanigans
-          const img = text.slice(match.index, lastIndex);
-          const src = img.match(/src="(.+?)"/)[1];
-
-          // only allow Twitch emotes in images
-          if (src.startsWith('https://static-cdn.jtvnw.net/')) {
-            // build a fresh image to dump attributes that we don’t want
-            const cleanImg = document.createElement('img');
-            cleanImg.src = src;
-            cleanImg.alt = '';
-
-            chatNode.appendChild(cleanImg);
-          }
-
-          if (matches[matchIndex + 1]) {
-            const middle = document.createTextNode(
-              text.slice(lastIndex, matches[matchIndex + 1].index),
-            );
-            chatNode.appendChild(middle);
-          }
-        });
-
-        const last = document.createTextNode(text.slice(lastIndex));
-        chatNode.appendChild(last);
+        if (!text.length) {
+          return;
+        }
 
         return (
           <li key={`${msg.author.username}:${msg.time}`}>
@@ -112,7 +87,7 @@ const Chat = () => {
             >
               {msg.author.username}:
             </strong>
-            <span dangerouslySetInnerHTML={{ __html: chatNode.innerHTML }} />
+            <span dangerouslySetInnerHTML={{ __html: text }} />
           </li>
         );
       })}
